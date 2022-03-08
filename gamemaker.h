@@ -81,6 +81,9 @@ EXPORTED_FUNCTION char *CwdFromProcId(double procId);
 // get process info from process id
 EXPORTED_FUNCTION double ProcInfoFromProcId(double procId);
 
+// get specific process info from process id
+EXPORTED_FUNCTION double ProcInfoFromProcIdEx(double procId, double kInfoFlags);
+
 // free process info data from memory
 EXPORTED_FUNCTION double FreeProcInfo(double procInfo);
 
@@ -131,6 +134,9 @@ EXPORTED_FUNCTION double DirectorySetCurrentWorking(char *dname);
 
 // get the environment variable of the given name
 EXPORTED_FUNCTION char *EnvironmentGetVariable(char *name);
+
+// get whether the environment variable of the given name exists
+EXPORTED_FUNCTION double EnvironmentGetVariableExists(char *name);
 
 // set the environment variable with the given name and value
 EXPORTED_FUNCTION double EnvironmentSetVariable(char *name, char *value);
