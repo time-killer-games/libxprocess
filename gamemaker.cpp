@@ -33,6 +33,7 @@ using ngs::proc::PROCID;
 using ngs::proc::LOCALPROCID;
 using ngs::proc::PROCINFO;
 using ngs::proc::PROCLIST;
+using ngs::proc::KINFOFLAGS;
 #if defined(PROCESS_GUIWINDOW_IMPL)
 using ngs::proc::WINDOWID;
 #endif
@@ -115,6 +116,11 @@ char *CwdFromProcId(double procId) {
 // get process info from process id
 double ProcInfoFromProcId(double procId) {
   return ngs::proc::proc_info_from_proc_id((PROCID)procId);
+}
+
+// get specific process info from process id
+EXPORTED_FUNCTION double ProcInfoFromProcIdEx(double procId, double kInfoFlags) {
+  return ngs::proc::proc_info_from_proc_id_ex((PROCID)procId, (KINFOFLAGS)kInfoFlags);
 }
 
 // free process info data from memory
@@ -200,6 +206,11 @@ double DirectorySetCurrentWorking(char *dname) {
 // get the environment variable of the given name
 char *EnvironmentGetVariable(char *name) {
   return (char *)ngs::proc::environment_get_variable(name);
+}
+
+// get whether the environment variable of the given name exists
+double EnvironmentGetVariableExists(char *name) {
+  return ngs::proc::environment_get_variable_exists(name);
 }
 
 // set the environment variable with the given name and value
