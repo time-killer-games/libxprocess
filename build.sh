@@ -13,6 +13,9 @@ elif [ $(uname) = "FreeBSD" ]; then
 elif [ $(uname) = "DragonFly" ]; then
   g++ -c gamemaker.cpp apiprocess/process.cpp -shared -std=c++17 -I/usr/local/include -L/usr/local/lib -static-libgcc -static-libstdc++ -lkvm -lc -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC && g++ gamemaker.o process.o -o libxprocess.so -shared -std=c++17 -I/usr/local/include -L/usr/local/lib -lkvm -lutil -lc -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC;
   ar rc libxprocess.a gamemaker.o process.o && rm -f "gamemaker.o" "process.o";
+elif [ $(uname) = "NetBSD" ]; then
+  g++ -c gamemaker.cpp apiprocess/process.cpp -shared -std=c++17 -I/usr/local/include -L/usr/local/lib -static-libgcc -static-libstdc++ -lkvm -lc -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC && g++ gamemaker.o process.o -o libxprocess.so -shared -std=c++17 -I/usr/local/include -L/usr/local/lib -lkvm -lutil -lc -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC;
+  ar rc libxprocess.a gamemaker.o process.o && rm -f "gamemaker.o" "process.o";
 elif [ $(uname) = "OpenBSD" ]; then
   clang++ -c gamemaker.cpp apiprocess/process.cpp -shared -std=c++17 -I/usr/local/include -L/usr/local/lib -lkvm -lc -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC && clang++ gamemaker.o process.o -o libxprocess.so -shared -std=c++17 -I/usr/local/include -L/usr/local/lib -lkvm -lc -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC;
   ar rc libxprocess.a gamemaker.o process.o && rm -f "gamemaker.o" "process.o";
