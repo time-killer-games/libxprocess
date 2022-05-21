@@ -520,6 +520,7 @@ namespace ngs::proc {
     bool result = (!DebugActiveProcess(proc_id));
     CloseHandle(other);
     CloseHandle(self);
+    return result;
     #else
     return (kill(proc_id, SIGSTOP) != -1);
     #endif
@@ -533,6 +534,7 @@ namespace ngs::proc {
     bool result = (!DebugActiveProcessStop(proc_id));
     CloseHandle(other);
     CloseHandle(self);
+    return result;
     #else
     return (kill(proc_id, SIGCONT) != -1);
     #endif
