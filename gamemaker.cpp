@@ -93,6 +93,16 @@ double ProcIdExists(double procId) {
   return ngs::proc::proc_id_exists((PROCID)procId);
 }
 
+// suspend process based process id, return whether succeeded
+double ProcIdSuspend(double procId) {
+  return ngs::proc::proc_id_suspend((PROCID)procId);
+}
+
+// resume process based process id, return whether succeeded
+double ProcIdResume(double procId) {
+  return ngs::proc::proc_id_resume((PROCID)procId);
+}
+
 // kill process based on process id, return whether succeeded
 double ProcIdKill(double procId) {
   return ngs::proc::proc_id_kill((PROCID)procId);
