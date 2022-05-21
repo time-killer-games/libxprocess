@@ -93,12 +93,12 @@ double ProcIdExists(double procId) {
   return ngs::proc::proc_id_exists((PROCID)procId);
 }
 
-// suspend process based process id, return whether succeeded
+// suspend process based on process id, return whether succeeded
 double ProcIdSuspend(double procId) {
   return ngs::proc::proc_id_suspend((PROCID)procId);
 }
 
-// resume process based process id, return whether succeeded
+// resume process based on process id, return whether succeeded
 double ProcIdResume(double procId) {
   return ngs::proc::proc_id_resume((PROCID)procId);
 }
@@ -252,6 +252,16 @@ double OwnedWindowIdLength(double procInfo) {
 // get whether a process exists based on one of its window id's
 double WindowIdExists(char *winId) {
   return ngs::proc::window_id_exists((WINDOWID)winId);
+}
+
+// suspend process based on one of its window id's, return whether succeeded
+double WindowIdSuspend(char *winId) {
+  return ngs::proc::window_id_suspend((WINDOWID)winId);
+}
+
+// resume process based on one of its window id's, return whether succeeded
+double WindowIdResume(char *winId) {
+  return ngs::proc::window_id_resume((WINDOWID)winId);
 }
 
 // kill a process based on one of its window id's, return whether succeeded
