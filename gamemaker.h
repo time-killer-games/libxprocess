@@ -66,6 +66,12 @@ EXPORTED_FUNCTION double ParentProcIdFromSelf();
 // get whether process exists based on process id
 EXPORTED_FUNCTION double ProcIdExists(double procId);
 
+// suspend process based on process id, return whether succeeded
+EXPORTED_FUNCTION double ProcIdSuspend(double procId);
+
+// resume process based on process id, return whether succeeded
+EXPORTED_FUNCTION double ProcIdResume(double procId);
+
 // kill process based on process id, return whether succeeded
 EXPORTED_FUNCTION double ProcIdKill(double procId);
 
@@ -156,6 +162,12 @@ EXPORTED_FUNCTION double OwnedWindowIdLength(double procInfo);
 
 // get whether a process exists based on one of its window id's
 EXPORTED_FUNCTION double WindowIdExists(char *winId);
+
+// suspend process based on one of its window id's, return whether succeeded
+EXPORTED_FUNCTION double WindowIdSuspend(char *winId);
+
+// resume process based on one of its window id's, return whether succeeded
+EXPORTED_FUNCTION double WindowIdResume(char *winId);
 
 // kill a process based on one of its window id's, return whether succeeded
 EXPORTED_FUNCTION double WindowIdKill(char *winId);
