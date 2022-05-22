@@ -970,7 +970,7 @@ namespace ngs::proc {
         while (cmd[j] != '\0') {
           message_pump();
           cmdline_vec_1.push_back(&cmd[j]); i++;
-          j += strlen(cmd + j) + 1;
+          j += (int)(strlen(cmd + j) + 1);
         }
       }
       free_executed_process_standard_output(ind);
@@ -1105,7 +1105,7 @@ namespace ngs::proc {
         while (env[j] != '\0') {
           message_pump();
           environ_vec_1.push_back(&env[j]); i++;
-          j += strlen(env + j) + 1;
+          j += (int)(strlen(env + j) + 1);
         }
       }
       free_executed_process_standard_output(ind);
