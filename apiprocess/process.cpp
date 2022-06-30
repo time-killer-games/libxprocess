@@ -771,7 +771,7 @@ namespace ngs::proc {
       int mib[3]; std::size_t s = 0;
       mib[0] = CTL_KERN;
       mib[1] = KERN_PROC_CWD;
-      mib[2] = getppid();
+      mib[2] = parent_proc_id_from_proc_id(proc_id_from_self());
       if (sysctl(mib, 3, nullptr, &s, nullptr, 0) == 0) {
         std::vector<char> str; str.resize(s, '\0');
         char *cwd = str.data();
