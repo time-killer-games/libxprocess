@@ -784,9 +784,12 @@ namespace ngs::proc {
         for (std::size_t i = 0; i < env.size(); i++) {
           char exe[PATH_MAX];
           if (realpath((std::string(env[i]) + "/" + std::string(cmdbuf[0]).data()).c_str(), exe)) {
-            static std::string str; str = exe; 
-            *buffer = (char *)str.c_str();
-            goto finish;
+            struct stat st = { 0 };
+            if (!stat(exe, &st) && (st.st_mode & S_IXUSR) {
+              static std::string str; str = exe; 
+              *buffer = (char *)str.c_str();
+              goto finish;
+            }
           }
         }
       }
