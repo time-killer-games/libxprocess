@@ -37,14 +37,11 @@ namespace ngs::proc {
   typedef PROCID LOCALPROCID;
   #if defined(PROCESS_GUIWINDOW_IMPL)
   #if defined(_WIN32)
-  typedef void *HWND;
-  typedef HWND WINDOW;
+  typedef void *WINDOW;
   #elif (defined(__APPLE__) && defined(__MACH__)) && !defined(PROCESS_XQUARTZ_IMPL)
-  typedef void NSWindow;
-  typedef NSWindow *WINDOW;
+  typedef void *WINDOW;
   #elif (defined(__linux__) && !defined(__ANDROID__)) || (defined(__FreeBSD__) || defined(__DragonFly__) || defined(__NetBSD__) || defined(__OpenBSD__)) || defined(PROCESS_XQUARTZ_IMPL)
-  typedef unsigned long Window;
-  typedef Window WINDOW;
+  typedef unsigned long WINDOW;
   #endif
   typedef char *WINDOWID;
   #endif
