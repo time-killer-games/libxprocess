@@ -29,15 +29,6 @@
 
 #include "gamemaker.h"
 
-using ngs::proc::PROCID;
-using ngs::proc::LOCALPROCID;
-using ngs::proc::PROCINFO;
-using ngs::proc::PROCLIST;
-using ngs::proc::KINFOFLAGS;
-#if defined(PROCESS_GUIWINDOW_IMPL)
-using ngs::proc::WINDOWID;
-#endif
-
 // execute process from the shell, return process id
 double ProcessExecute(char *command) {
   return ngs::proc::process_execute(command);
