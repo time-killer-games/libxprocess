@@ -262,6 +262,6 @@ double WindowIdKill(char *winId) {
 
 // return a window id from native window handle
 char *WindowIdFromNativeWindow(void *window) {
-  return ngs::proc::window_id_from_native_window((ngs::proc::WINDOW)(uintptr_t)window);
+  return ngs::proc::window_id_from_native_window((WINDOW)(uintptr_t)window);
 }
 #endif
