@@ -418,8 +418,11 @@ namespace ngs::xproc {
     if (!kd) return vec;
     while ((proc_info = kvm_nextproc(kd))) {
       if (kvm_kread(kd, (std::uintptr_t)proc_info->p_pidp, &cur_pid, sizeof(cur_pid)) != -1) {
-        vec.insert(vec.begin(), cur_pid.pid_id);
+        vec.push_back(cur_pid.pid_id);
       }
+    }
+    if (!vec.empty()) {
+      std::reverse(vec.begin(), vec.end());
     }
     kvm_close(kd);
     #endif
@@ -788,43 +791,45 @@ namespace ngs::xproc {
       return success;
     };
     std::vector<std::string> buffer = cmdline_from_proc_id(proc_id);
-    if (buffer.size()) {
+    if (!buffer.empty()) {
       bool is_exe = false;
       std::string argv0;
-      if (!buffer[0].empty() && buffer[0][0] == '/') {
-        argv0 = buffer[0];
-        is_exe = is_executable(proc_id, argv0.c_str(), &path);
-      } else if (buffer[0].find('/') == std::string::npos) {
-        std::string penv = envvar_value_from_proc_id(proc_id, "PATH");
-        if (!penv.empty()) {
-          std::vector<std::string> env;
-          std::string tmp;
-          std::stringstream sstr(penv); 
-          while (std::getline(sstr, tmp, ':')) {
-            env.push_back(tmp);
-          }
-          for (std::size_t i = 0; i < env.size(); i++) {
-            argv0 = env[i] + "/" + buffer[0];
-            is_exe = is_executable(proc_id, argv0.c_str(), &path);
-            if (is_exe) break;
-            if (buffer[0][0] == '-') {
-              argv0 = env[i] + "/" + buffer[0].substr(1);
+      if (!buffer[0].empty()) {
+        if (buffer[0][0] == '/') {
+          argv0 = buffer[0];
+          is_exe = is_executable(proc_id, argv0.c_str(), &path);
+        } else if (buffer[0].find('/') == std::string::npos) {
+          std::string penv = envvar_value_from_proc_id(proc_id, "PATH");
+          if (!penv.empty()) {
+            std::vector<std::string> env;
+            std::string tmp;
+            std::stringstream sstr(penv); 
+            while (std::getline(sstr, tmp, ':')) {
+              env.push_back(tmp);
+            }
+            for (std::size_t i = 0; i < env.size(); i++) {
+              argv0 = env[i] + "/" + buffer[0];
               is_exe = is_executable(proc_id, argv0.c_str(), &path);
               if (is_exe) break;
+              if (buffer[0][0] == '-') {
+                argv0 = env[i] + "/" + buffer[0].substr(1);
+                is_exe = is_executable(proc_id, argv0.c_str(), &path);
+                if (is_exe) break;
+              }
             }
           }
-        }
-      } else {
-        std::string pwd = envvar_value_from_proc_id(proc_id, "PWD");
-        if (!pwd.empty()) {
-          argv0 = pwd + "/" + buffer[0];
-          is_exe = is_executable(proc_id, argv0.c_str(), &path);
-        }
-        if (!is_exe) {
-          std::string cwd = cwd_from_proc_id(proc_id);
-          if (!cwd.empty()) {
-            argv0 = cwd + "/" + buffer[0];
+        } else {
+          std::string pwd = envvar_value_from_proc_id(proc_id, "PWD");
+          if (!pwd.empty()) {
+            argv0 = pwd + "/" + buffer[0];
             is_exe = is_executable(proc_id, argv0.c_str(), &path);
+          }
+          if (!is_exe) {
+            std::string cwd = cwd_from_proc_id(proc_id);
+            if (!cwd.empty()) {
+              argv0 = cwd + "/" + buffer[0];
+              is_exe = is_executable(proc_id, argv0.c_str(), &path);
+            }
           }
         }
       }
