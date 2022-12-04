@@ -125,7 +125,7 @@ double ProcInfoFromProcId(double procId) {
 }
 
 // get specific process info from process id
-EXPORTED_FUNCTION double ProcInfoFromProcIdEx(double procId, double kInfoFlags) {
+double ProcInfoFromProcIdEx(double procId, double kInfoFlags) {
   return ngs::cproc::proc_info_from_proc_id_ex((XPROCID)procId, (KINFOFLAGS)kInfoFlags);
 }
 
