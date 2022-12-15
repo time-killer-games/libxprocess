@@ -23,6 +23,6 @@ elif [ $(uname) = "SunOS" ]; then
   g++ -c gamemaker.cpp lib/cproc/cproc.cpp lib/xproc/xproc.cpp -I. -shared -std=c++17 -static-libgcc -lkvm -lc -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC && g++ gamemaker.o cproc.o xproc.o -o libxprocess.so -I. -shared -std=c++17 -lkvm -lc -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC;
   ar rc libxprocess.a gamemaker.o cproc.o xproc.o && rm -f "gamemaker.o" "cproc.o" "xproc.o";
 else
-  g++ -c gamemaker.cpp lib/cproc/cproc.cpp lib/xproc/xproc.cpp -I. -shared -std=c++17 -static-libgcc -static-libstdc++ -static -DPROCESS_GUIWINDOW_IMPL && g++ gamemaker.o cproc.o xproc.o -o  libxprocess.dll -I. -shared -std=c++17 -static-libgcc -static-libstdc++ -static -DPROCESS_WIN32EXE_INCLUDES -DPROCESS_GUIWINDOW_IMPL;
+  g++ -c gamemaker.cpp lib/cproc/cproc.cpp lib/xproc/xproc.cpp -I. -shared -std=c++17 -static-libgcc -static-libstdc++ -static -DPROCESS_GUIWINDOW_IMPL && g++ gamemaker.o cproc.o xproc.o -o  libxprocess.dll -I. -shared -std=c++17 -static-libgcc -static-libstdc++ -static -lntdll -DPROCESS_WIN32EXE_INCLUDES -DPROCESS_GUIWINDOW_IMPL;
   ar rc libxprocess.a gamemaker.o cproc.o xproc.o && rm -f "apiprocess/process32.h" "apiprocess/process64.h" "gamemaker.o" "cproc.o" "xproc.o";
 fi
