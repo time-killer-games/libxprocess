@@ -46,7 +46,7 @@ double CompletionStatusFromExecutedProcess(double procIndex) {
 
 // write to executed process standard input file descriptor based on process id
 double ExecutedProcessWriteToStandardInput(double procIndex, char *input) {
-  ngs::cproc::executed_process_write_to_standard_input((CPROCID)procIndex, input); return 0;
+  return ngs::cproc::executed_process_write_to_standard_input((CPROCID)procIndex, input); return 0;
 }
 
 // read from current process standard input file descriptor
