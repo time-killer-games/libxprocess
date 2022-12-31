@@ -131,8 +131,8 @@ namespace ngs::cproc {
   CPROCID process_execute_async(const char *command);
   ssize_t executed_process_write_to_standard_input(CPROCID proc_index, const char *input);
   const char *executed_process_read_from_standard_output(CPROCID proc_index);
-  void free_executed_process_standard_input(CPROCID proc_index);
-  void free_executed_process_standard_output(CPROCID proc_index);
+  bool free_executed_process_standard_input(CPROCID proc_index);
+  bool free_executed_process_standard_output(CPROCID proc_index);
   bool completion_status_from_executed_process(CPROCID proc_index);
   const char *current_process_read_from_standard_input();
 
