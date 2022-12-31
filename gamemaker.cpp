@@ -46,7 +46,7 @@ double CompletionStatusFromExecutedProcess(double procIndex) {
 
 // write to executed process standard input file descriptor based on process id
 double ExecutedProcessWriteToStandardInput(double procIndex, char *input) {
-  return ngs::cproc::executed_process_write_to_standard_input((CPROCID)procIndex, input); return 0;
+  return (double)ngs::cproc::executed_process_write_to_standard_input((CPROCID)procIndex, input);
 }
 
 // read from current process standard input file descriptor
@@ -61,12 +61,12 @@ char *ExecutedProcessReadFromStandardOutput(double procIndex) {
 
 // free executed process standard input string based on process id
 double FreeExecutedProcessStandardInput(double procIndex) {
-  ngs::cproc::free_executed_process_standard_input((CPROCID)procIndex); return 0;
+  return ngs::cproc::free_executed_process_standard_input((CPROCID)procIndex);
 }
 
 // free executed process standard ouptut string based on process id
 double FreeExecutedProcessStandardOutput(double procIndex) {
-  ngs::cproc::free_executed_process_standard_output((CPROCID)procIndex); return 0;
+  return ngs::cproc::free_executed_process_standard_output((CPROCID)procIndex);
 }
 
 // get process id from self
