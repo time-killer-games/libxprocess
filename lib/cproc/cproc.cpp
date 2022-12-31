@@ -897,7 +897,6 @@ namespace ngs::cproc {
       child_proc_id[index] = 0;
     }
     #endif
-    free_executed_process_standard_input(proc_index);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     complete_map[proc_index] = true;
     return proc_index;
@@ -942,14 +941,16 @@ namespace ngs::cproc {
     return stdopt_map.find(proc_index)->second.c_str();
   }
 
-  void free_executed_process_standard_input(CPROCID proc_index) {
-    if (stdipt_map.find(proc_index) == stdipt_map.end()) return;
+  bool free_executed_process_standard_input(CPROCID proc_index) {
+    if (stdipt_map.find(proc_index) == stdipt_map.end()) return false;
     stdipt_map.erase(proc_index);
+    return true;
   }
 
-  void free_executed_process_standard_output(CPROCID proc_index) {
-    if (stdopt_map.find(proc_index) == stdopt_map.end()) return;
+  bool free_executed_process_standard_output(CPROCID proc_index) {
+    if (stdopt_map.find(proc_index) == stdopt_map.end()) return false;
     stdopt_map.erase(proc_index);
+    return true;
   }
 
   bool completion_status_from_executed_process(CPROCID proc_index) {
