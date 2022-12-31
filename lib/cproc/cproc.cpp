@@ -931,7 +931,7 @@ namespace ngs::cproc {
     return nwritten;
     #else
     DWORD dwwritten = -1;
-    SetFilePointer((HANDLE)(void*)stdipt_map[proc_index], 0, NULL, FILE_END);
+    SetFilePointer((HANDLE)(void *)stdipt_map[proc_index], 0, NULL, FILE_END);
     WriteFile((HANDLE)(void *)stdipt_map[proc_index], &v[0], (DWORD)v.size(), &dwwritten, nullptr);
     return (ssize_t)dwwritten;
     #endif
