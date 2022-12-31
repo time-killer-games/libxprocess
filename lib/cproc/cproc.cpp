@@ -922,14 +922,16 @@ namespace ngs::cproc {
   ssize_t executed_process_write_to_standard_input(CPROCID proc_index, const char *input) {
     if (stdipt_map.find(proc_index) == stdipt_map.end()) return -1;
     std::string s = input;
-    std::vector<char> v(s.length() + 1);
-    std::copy(s.c_str(), s.c_str() + s.length() + 1, v.begin());
+    std::vector<char> v(s.length());
+    std::copy(s.c_str(), s.c_str() + s.length(), v.begin());
     #if !defined(_WIN32)
     ssize_t nwritten = -1;
+    lseek((int)stdipt_map[proc_index], 0, SEEK_END);
     nwritten = write((int)stdipt_map[proc_index], &v[0], v.size());
     return nwritten;
     #else
-    DWORD dwwritten = -1; 
+    DWORD dwwritten = -1;
+    SetFilePointer((HANDLE)(void*)stdipt_map[proc_index], 0, NULL, FILE_END);
     WriteFile((HANDLE)(void *)stdipt_map[proc_index], &v[0], (DWORD)v.size(), &dwwritten, nullptr);
     return (ssize_t)dwwritten;
     #endif
