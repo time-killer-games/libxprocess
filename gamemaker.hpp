@@ -25,7 +25,7 @@
  
 */
 
-#include "lib/cproc/cproc.hpp"
+#include "xprocess.hpp"
 
 #ifdef _WIN32
 #define EXPORTED_FUNCTION extern "C" __declspec(dllexport)

@@ -20,13 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gamemaker.cpp" />
-    <ClCompile Include="lib\cproc\cproc.cpp" />
-    <ClCompile Include="lib\xproc\xproc.cpp" />
+    <ClCompile Include="xprocess.cpp" />
+    <ClCompile Include="apiprocess\process.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gamemaker.hpp" />
-    <ClInclude Include="lib\cproc\cproc.hpp" />
-    <ClInclude Include="lib\xproc\xproc.hpp" />
+    <ClInclude Include="xprocess.hpp" />
+    <ClInclude Include="apiprocess\process.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
