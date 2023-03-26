@@ -41,12 +41,12 @@ double ProcessExecuteAsync(char *command) {
 
 //  get whether executed process has quit based on process id
 double CompletionStatusFromExecutedProcess(double procIndex) {
-  return xprocess::completion_status_from_executed_process((CPROCID)procIndex);
+  return xprocess::completion_status_from_executed_process((PROCID)procIndex);
 }
 
 // write to executed process standard input file descriptor based on process id
 double ExecutedProcessWriteToStandardInput(double procIndex, char *input) {
-  return (double)xprocess::executed_process_write_to_standard_input((CPROCID)procIndex, input);
+  return (double)xprocess::executed_process_write_to_standard_input((PROCID)procIndex, input);
 }
 
 // read from current process standard input file descriptor
@@ -56,17 +56,17 @@ char *CurrentProcessReadFromStandardInput() {
 
 // read from executed process standard output file descriptor based on process id
 char *ExecutedProcessReadFromStandardOutput(double procIndex) {
-  return (char *)xprocess::executed_process_read_from_standard_output((CPROCID)procIndex);
+  return (char *)xprocess::executed_process_read_from_standard_output((PROCID)procIndex);
 }
 
 // free executed process standard input string based on process id
 double FreeExecutedProcessStandardInput(double procIndex) {
-  return xprocess::free_executed_process_standard_input((CPROCID)procIndex);
+  return xprocess::free_executed_process_standard_input((PROCID)procIndex);
 }
 
 // free executed process standard ouptut string based on process id
 double FreeExecutedProcessStandardOutput(double procIndex) {
-  return xprocess::free_executed_process_standard_output((CPROCID)procIndex);
+  return xprocess::free_executed_process_standard_output((PROCID)procIndex);
 }
 
 // get process id from self
@@ -81,27 +81,27 @@ double ParentProcIdFromSelf() {
 
 // get parent process id from process id
 double ParentProcIdFromProcId(double procId) {
-  return xprocess::parent_proc_id_from_proc_id((XPROCID)procId);
+  return xprocess::parent_proc_id_from_proc_id((PROCID)procId);
 }
 
 // get whether process exists based on process id
 double ProcIdExists(double procId) {
-  return xprocess::proc_id_exists((XPROCID)procId);
+  return xprocess::proc_id_exists((PROCID)procId);
 }
 
 // suspend process based on process id, return whether succeeded
 double ProcIdSuspend(double procId) {
-  return xprocess::proc_id_suspend((XPROCID)procId);
+  return xprocess::proc_id_suspend((PROCID)procId);
 }
 
 // resume process based on process id, return whether succeeded
 double ProcIdResume(double procId) {
-  return xprocess::proc_id_resume((XPROCID)procId);
+  return xprocess::proc_id_resume((PROCID)procId);
 }
 
 // kill process based on process id, return whether succeeded
 double ProcIdKill(double procId) {
-  return xprocess::proc_id_kill((XPROCID)procId);
+  return xprocess::proc_id_kill((PROCID)procId);
 }
 
 // get executable image file path from self
@@ -111,22 +111,22 @@ char *ExecutableFromSelf() {
 
 // get executable image file path from process id
 char *ExeFromProcId(double procId) {
-  return (char *)xprocess::exe_from_proc_id((XPROCID)procId);
+  return (char *)xprocess::exe_from_proc_id((PROCID)procId);
 }
 
 // get current working directory from process id
 char *CwdFromProcId(double procId) {
-  return (char *)xprocess::cwd_from_proc_id((XPROCID)procId);
+  return (char *)xprocess::cwd_from_proc_id((PROCID)procId);
 }
 
 // get process info from process id
 double ProcInfoFromProcId(double procId) {
-  return xprocess::proc_info_from_proc_id((XPROCID)procId);
+  return xprocess::proc_info_from_proc_id((PROCID)procId);
 }
 
 // get specific process info from process id
 double ProcInfoFromProcIdEx(double procId, double kInfoFlags) {
-  return xprocess::proc_info_from_proc_id_ex((XPROCID)procId, (KINFOFLAGS)kInfoFlags);
+  return xprocess::proc_info_from_proc_id_ex((PROCID)procId, (KINFOFLAGS)kInfoFlags);
 }
 
 // free process info data from memory
