@@ -51,6 +51,9 @@ EXPORTED_FUNCTION char *CurrentProcessReadFromStandardInput();
 // read from executed process standard output file descriptor based on process id
 EXPORTED_FUNCTION char *ExecutedProcessReadFromStandardOutput(double procIndex);
 
+// set buffer limit for all standard output file descriptors
+EXPORTED_FUNCTION void SetBufferLimitForStandardOutput(long long limit);
+
 // free executed process standard input string based on process id
 EXPORTED_FUNCTION double FreeExecutedProcessStandardInput(double procIndex);
 
