@@ -3,7 +3,6 @@
  MIT License
  
  Copyright © 2021-2022 Samuel Venable
- Copyright © 2021 Lars Nilsson
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -61,7 +60,7 @@ char *ExecutedProcessReadFromStandardOutput(double procIndex) {
 
 // set buffer limit for all standard output file descriptors
 EXPORTED_FUNCTION double SetBufferLimitForStandardOutput(double limit) {
-  xprocess::set_buffer_limit_for_standard_output((double)limit);
+  xprocess::set_buffer_limit_for_standard_output((long long)limit);
   return 0;
 }
 
