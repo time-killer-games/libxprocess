@@ -60,8 +60,7 @@ char *ExecutedProcessReadFromStandardOutput(double procIndex) {
 
 // set buffer limit for all standard output file descriptors
 double SetBufferLimitForStandardOutput(double limit) {
-  xprocess::set_buffer_limit_for_standard_output((long long)limit);
-  return 0;
+  xprocess::set_buffer_limit_for_standard_output((long long)limit); return 0;
 }
 
 // free executed process standard input string based on process id
