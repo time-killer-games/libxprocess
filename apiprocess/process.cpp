@@ -239,7 +239,7 @@ namespace {
   std::vector<wchar_t> cwd_cmd_env_from_proc(HANDLE proc, int type) {
     std::vector<wchar_t> buffer;
     PEB peb;
-    SIZE_T nRead = 0;
+    std::size_t nRead = 0;
     ULONG len = 0;
     PROCESS_BASIC_INFORMATION pbi;
     RTL_USER_PROCESS_PARAMETERS upp;
@@ -351,7 +351,7 @@ namespace {
     psinfo_t psinfo;
     char buffer[BUFSIZ];
     int n = 0, err = 0, fd = -1;
-    size_t nread = 0;
+    std::size_t nread = 0;
     unsigned args_size = 0;
     char **args = (char **)malloc(ARG_MAX);
     if (!args) goto finish;
