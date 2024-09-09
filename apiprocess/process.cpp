@@ -239,7 +239,7 @@ namespace {
   std::vector<wchar_t> cwd_cmd_env_from_proc(HANDLE proc, int type) {
     std::vector<wchar_t> buffer;
     PEB peb;
-    std::size_t nRead = 0;
+    SIZE_T nRead = 0;
     ULONG len = 0;
     PROCESS_BASIC_INFORMATION pbi;
     RTL_USER_PROCESS_PARAMETERS upp;
