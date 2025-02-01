@@ -2,7 +2,7 @@
 cd "${0%/*}"
 
 if [ $(uname) = "Darwin" ]; then
-  clang++ -c gamemaker.cpp xprocess.cpp apiprocess/process.cpp -I. -shared -std=c++17 -Wno-unused-command-line-argument -DPROCESS_GUIWINDOW_IMPL -framework AppKit -framework CoreFoundation -framework CoreGraphics -ObjC++ -arch arm64 -arch x86_64 && clang++ gamemaker.o process.o xprocess.o -o libxprocess.dylib -I. -shared -std=c++17 -Wno-unused-command-line-argument -DPROCESS_GUIWINDOW_IMPL -framework CoreFoundation -framework CoreGraphics -framework AppKit -ObjC++ -arch arm64 -arch x86_64;
+  clang++ -c gamemaker.cpp xprocess.cpp apiprocess/process.cpp -I. -shared -std=c++17 -Wno-unused-command-line-argument -DPROCESS_GUIWINDOW_IMPL -framework AppKit -framework CoreFoundation -framework CoreGraphics -ObjC++ -mmacos-version-min=10.13 -arch arm64 -arch x86_64 && clang++ gamemaker.o process.o xprocess.o -o libxprocess.dylib -I. -shared -std=c++17 -Wno-unused-command-line-argument -DPROCESS_GUIWINDOW_IMPL -framework CoreFoundation -framework CoreGraphics -framework AppKit -ObjC++ -mmacos-version-min=10.13 -arch arm64 -arch x86_64;
   ar rc libxprocess.a gamemaker.o process.o xprocess.o && rm -f "gamemaker.o" "process.o" "xprocess.o";
 elif [ $(uname) = "Linux" ]; then
   g++ -c gamemaker.cpp xprocess.cpp apiprocess/process.cpp -I. -shared -std=c++17 -static-libgcc -static-libstdc++ -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC && g++ gamemaker.o process.o xprocess.o -o  libxprocess.so -I. -shared -std=c++17 -static-libgcc -static-libstdc++ -lpthread -DPROCESS_GUIWINDOW_IMPL `pkg-config x11 --cflags --libs` -fPIC;
